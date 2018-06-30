@@ -24,12 +24,14 @@ function outer() {
   
 // Code Here
 
+ var inner = outer()
 
 
 //Once you do that, invoke inner.
 
 //Code Here
 
+inner()
 
 
 ////////// PROBLEM 2 //////////
@@ -52,8 +54,9 @@ function callFriend(name) {
 */
 
 //Code Here
+var callJake = callFriend('Jake');
 
-
+callJake('435-555-9248')
 
 ////////// PROBLEM 3 //////////
 
@@ -61,16 +64,24 @@ function callFriend(name) {
   Write a function called makeCounter that makes the following code work properly.
 */
 
-//Code Here
+function makeCounter() {
+  num = 1
+  function add() {
+    console.log(num);
+    return num++
+  }
+  return add;
+
+}
 
 
 
 //Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+  var count = makeCounter();
+  count(); // 1
+  count(); // 2
+  count(); // 3
+  count(); // 4
 
 
 
@@ -186,11 +197,11 @@ function secretNumber() {
   Fix the code below to log the desired output.
 */
 
-function timeOutCounter() {
-  for (var i = 0; i <= 5; i++) {
-    setTimeout(function() {
-      console.log(i);
-    }, i * 1000);
-  }
-}
-timeOutCounter();
+// function timeOutCounter() {
+//   for (var i = 0; i <= 5; i++) {
+//     setTimeout(function() {
+//       console.log(i);
+//     }, i * 1000);
+//   }
+// }
+// timeOutCounter();
