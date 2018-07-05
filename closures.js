@@ -2,7 +2,6 @@
   Once you complete a problem, refresh ./closures.html in your browser and check to see if the problem's test(s) are passing.
   Passed tests will be indicated by a green circle.
   Failed tests will be indicated by a red X.
-
   You can refresh the page at any time to re-run all the tests.
 */
 
@@ -21,17 +20,14 @@ function outer() {
   Above you're given a function that returns another function which has a closure over the name variable.
   Invoke outer saving the return value into another variable called 'inner'.
 */
-  
 // Code Here
-
- var inner = outer()
+let inner = outer();
 
 
 //Once you do that, invoke inner.
 
 //Code Here
-
-inner()
+inner();
 
 
 ////////// PROBLEM 2 //////////
@@ -54,9 +50,8 @@ function callFriend(name) {
 */
 
 //Code Here
-var callJake = callFriend('Jake');
-
-callJake('435-555-9248')
+const callJake = callFriend('Jake');
+callJake('435-555-9248');
 
 ////////// PROBLEM 3 //////////
 
@@ -64,17 +59,13 @@ callJake('435-555-9248')
   Write a function called makeCounter that makes the following code work properly.
 */
 
+//Code Here
 function makeCounter() {
-  num = 1
-  function add() {
-    console.log(num);
-    return num++
+  let num = 0;
+  return function() {
+    return ++num;
   }
-  return add;
-
 }
-
-
 
 //Uncomment this once you make your function
   var count = makeCounter();
@@ -98,9 +89,14 @@ function makeCounter() {
 
 function counterFactory(value) {
   // Code here.
-
+  let num = value;
   return {
-
+    inc: function() {
+      return ++num;
+    },
+    dec: function() {
+      return --num;
+    }
   };
 }
 
@@ -124,9 +120,11 @@ function motivation( firstname, lastname ) {
   var welcomeText = "You're doing awesome, keep it up";
 
   // code message function here.
-
+  function message() {
+    return `You're doing awesome, keep it up ${firstname} ${lastname}.`;
+  }
   //Uncommment this to return the value of your message function
-  //return message;
+  return message;
 }
 
 var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.
@@ -155,9 +153,13 @@ var module = (function() {
   // outside our lexical scope
   return {
     // Code here.
+    publicMethod: function() {
+      return privateMethod();
+    }
   };
 })();
 
+module.publicMethod();
 
 
 ////////// PROBLEM 7 //////////
@@ -174,6 +176,14 @@ function secretNumber() {
 
   return {
     // Code here
+    addToSecret: function(num) {
+      secret += num;
+      return secret;
+    },
+    takeAwayFromSecret: function(num) {
+      secret -= num;
+      return secret;
+    }
   };
 }
 
@@ -190,18 +200,19 @@ function secretNumber() {
     3 seconds after call - log 3
     4 seconds after call - log 4
     5 seconds after call - log 5
-
   However, because each call to console.log occurs after the loop has finished, the value of i has changed before the console.log executes.
   We'll need to use a closure to preserve a reference to i at the time of execution.
   
   Fix the code below to log the desired output.
 */
 
-// function timeOutCounter() {
-//   for (var i = 0; i <= 5; i++) {
-//     setTimeout(function() {
-//       console.log(i);
-//     }, i * 1000);
-//   }
-// }
-// timeOutCounter();
+function timeOutCounter() {
+  let j = 0
+  for (var i = 0; i <= 5; i++) {
+    setTimeout(function() {
+      console.log(j);
+      j++;
+    }, i * 1000);
+  }
+}
+timeOutCounter();
